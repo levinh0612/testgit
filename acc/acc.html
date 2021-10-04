@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tài khoản    |   Cửa hàng bóng đá LV</title>
+    <LINK REL="SHORTCUT ICON" HREF="image/LOGO-SPORT.png">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="acc_css.css">
+ 
+   <!-- Nay la link font-family-->
+   <link href="../do an web/font/Comfortaa-VariableFont_wght.ttf" rel="stylesheet">
+   <link rel="stylesheet" href="font/static/Comfortaa-Bold.ttf">
+   <link rel="stylesheet" href="font/static/Comfortaa-Light.ttf">
+   <link rel="stylesheet" href="font/static/Comfortaa-Medium.ttf">
+   <link rel="stylesheet" href="font/static/Comfortaa-Regular.ttf">
+   <link rel="stylesheet" href="font/static/Comfortaa-SemiBold.ttf">
+</head>
+<body>
+  <div class="cont">
+    <div class="form sign-in">
+        <form action="" method="POST" id="form-sign-in" >
+
+          <h2>Đăng nhập</h2>
+          
+        <div class="form-group">
+          <label>
+            <span>Địa chỉ Email</span>
+            <input type="email" id="email" name="email" >
+            <span class="form-message"></span>
+          </label>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <span>Mật khẩu</span>
+            <input type="password" id="password" name="password" >
+            <span class="form-message"></span>
+          </label>
+        </div>
+        
+        <button class="submit" type="submit">Đăng nhập</button>
+        <p class="forgot-pass">Quên mật khẩu ?</p>
+        
+        <div class="social-media">
+          <span>Hoặc </span>
+          <ul>
+            <li><img src="image/facebook.png"></li>
+            <li><img src="image/google.png"></li>
+            <li><img src="image/gmail.png"></li>
+          </ul>
+        </div>
+      </form>
+    </div>
+      
+      <div class="sub-cont">
+      <div class="img">
+        <div class="img-text m-up">
+          <h2>Khách hàng mới?</h2>
+          <p>Hãy đăng ký và khám phá những điều thú vị của LV-Sport!</p>
+        </div>
+        <div class="img-text m-in">
+          <h2>Thành viên cũ ?</h2>
+          <p>Nếu bạn đã có tài khoản, hãy đăng nhập. LV-Sport nhớ bạn!</p>
+        </div>
+        <div class="img-btn">
+          <span class="m-up">Đăng ký</span>
+          <span class="m-in">Đăng nhập</span>
+        </div>
+      </div>
+      <div class="form sign-up">
+        <form action="" method="POST" id="form-sign-up" >
+          <div class="form-group ">
+            <h2>Đăng ký</h2>
+            <label>
+              <span>Họ và tên</span>
+              <input type="text" id="fullname" name="fullname" >
+              <span class="form-message"></span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <span>Địa chỉ Email</span>
+              <input type="email" id="email" name="email" >
+              <span class="form-message"></span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <span>Mật khẩu</span>
+              <input type="password" id="password" name="password" >
+              <span class="form-message"></span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <span>Xác nhận mật khẩu</span>
+              <input type="password" id="password_confirmation" name="password_confirmation" >
+              <span class="form-message"></span>
+            </label>
+          </div>
+
+          <button type="submit" class="submit">Đăng ký ngay</button>
+        </form>
+      
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="./validator.js"></script>
+  <script>
+    // Đổi từ đăng nhập sang đăng ký và ngược lại
+      document.querySelector('.img-btn').addEventListener('click',function()
+      {
+    document.querySelector('.cont').classList.toggle('s-signup')
+      })
+
+    // Mong muốn của chúng ta 
+
+    //validator form đăng nhập
+    validator({
+        form: '#form-sign-in',
+        formGroupSelector: '.form-group',
+        errorSelector : '.form-message',
+        rules: [
+
+            validator.isRequired('#email', 'Vui lòng nhập email của bạn'),
+            validator.isEmail('#email', 'Vui lòng nhập đúng email'),
+
+            validator.isRequired('#password', 'Vui lòng nhập mật khẩu của bạn'),
+            validator.minLength('#password',6,'Mật khẩu nhập vào không đủ ký tự'),
+
+        ],
+        onSubmit: function (data) {
+          // Call API
+          console.log(data)
+        }
+        })
+
+
+    // validator form đăng ký
+    validator({
+        form: '#form-sign-up',
+        formGroupSelector: '.form-group',
+        errorSelector : '.form-message',
+        rules: [
+            validator.isRequired('#fullname', 'Vui lòng nhập họ và tên của bạn'),
+
+            validator.isRequired('#email', 'Vui lòng nhập email của bạn'),
+            validator.isEmail('#email', 'Vui lòng nhập đúng email'),
+
+            validator.isRequired('#password', 'Vui lòng nhập mật khẩu của bạn'),
+            validator.minLength('#password',6,'Mật khẩu nhập vào không đủ ký tự'),
+
+            validator.isRequired('#password_confirmation', 'Vui lòng nhập mật khẩu xác nhận của bạn'),
+            validator.isConfirmed('#password_confirmation', function () {
+              return document.querySelector('#form-sign-up #password').value
+            },'Mật khẩu nhập lại khôn chính xác'),
+
+        ],
+        onSubmit: function (data) {
+          // Call API
+          console.log(data)
+        }
+    })
+  </script>
+</body>
+</html>
