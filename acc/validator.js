@@ -173,3 +173,5 @@ validator.isConfirmed = function (selector, getConfirmVallue,message ) {
         }
     }
 }
+
+console.log("avc");
